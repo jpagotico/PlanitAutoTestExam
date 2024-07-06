@@ -100,7 +100,7 @@ public class Contact_Page_Steps {
 
     @Then("I should see successful message for {string}")
     public void i_should_see_successful_message_for(String fnvalue) throws InterruptedException {
-        Thread.sleep(10000);
+        Thread.sleep(20000);
         WebElement success_Message = driver.findElement(By.cssSelector("[class=\"alert alert-success\"]"));
         Assert.assertEquals(success_Message.getText(),"Thanks " + fnvalue +", we appreciate your feedback.");
     }
