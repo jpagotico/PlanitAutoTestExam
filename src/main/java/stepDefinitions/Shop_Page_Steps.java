@@ -14,6 +14,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 
+import java.time.Duration;
+
 
 public class Shop_Page_Steps {
     private WebDriver driver;
@@ -32,10 +34,10 @@ public class Shop_Page_Steps {
     }
 
     @Given("I access the Jupiter Toys Shop page thru Start Shopping button")
-    public void i_access_the_jupiter_toys_shop_page_thru_start_shopping_button() throws InterruptedException {
+    public void i_access_the_jupiter_toys_shop_page_thru_start_shopping_button() {
         driver.get("https://jupiter.cloud.planittesting.com/#/home");
         driver.findElement(By.cssSelector("[class=\"btn btn-success btn-large\"]")).click();
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @When("I click {int} times the buy button of Stuffed Frog")
@@ -67,9 +69,9 @@ public class Shop_Page_Steps {
     }
 
     @When("I go to Cart Page")
-    public void i_go_to_cart_page() throws InterruptedException {
+    public void i_go_to_cart_page() {
         driver.findElement(By.cssSelector("li#nav-cart > a")).click();
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @Then("I verify the subtotal for Stuffed Frog is correct")

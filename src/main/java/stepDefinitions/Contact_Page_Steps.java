@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 
 
-
+import java.time.Duration;
 import java.util.List;
 
 public class Contact_Page_Steps {
@@ -37,16 +37,16 @@ public class Contact_Page_Steps {
     }
 
     @Given("I access the Jupiter Toys Contact page")
-    public void i_access_the_jupiter_toys_contact_page() throws InterruptedException  {
+    public void i_access_the_jupiter_toys_contact_page()  {
         driver.get("https://jupiter.cloud.planittesting.com/#/home");
         driver.findElement(By.cssSelector("[href=\"#/contact\"]")).click();
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @When("I click submit button")
-    public void i_click_submit_button() throws InterruptedException {
+    public void i_click_submit_button() {
         driver.findElement(By.cssSelector("[class=\"btn-contact btn btn-primary\"]")).click();
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @Then("I see error messages")
@@ -74,7 +74,7 @@ public class Contact_Page_Steps {
     @And("I enter {string} in the Message field")
     public void i_enter_value_the_message_field(String mvalue) throws InterruptedException {
         driver.findElement(By.id("message")).sendKeys(mvalue);
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @Then("I should not see error messages")
@@ -99,8 +99,8 @@ public class Contact_Page_Steps {
     }
 
     @Then("I should see successful message for {string}")
-    public void i_should_see_successful_message_for(String fnvalue) throws InterruptedException {
-        Thread.sleep(20000);
+    public void i_should_see_successful_message_for(String fnvalue) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         WebElement success_Message = driver.findElement(By.cssSelector("[class=\"alert alert-success\"]"));
         Assert.assertEquals(success_Message.getText(),"Thanks " + fnvalue +", we appreciate your feedback.");
     }
